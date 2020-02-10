@@ -1,0 +1,25 @@
+{
+  "employee_id": 6552343434343232,
+  "activities": [
+    {
+      "name": "login",
+      "time": 1581100200000,
+      "duration": 5
+    },
+    {
+      "name": "logout",
+      "time": 1581100200000,
+      "duration": 7
+    },
+    {
+      "name": "teabreak",
+      "time": 1581100200000,
+      "duration": 6
+    },
+    {
+      "name": "teabreak",
+      "time": 1581100200000,
+      "duration": 6
+    }
+  ]
+}
