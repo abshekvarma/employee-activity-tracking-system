@@ -2,51 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70e83ed7-cc96-4e8a-be27-094b911cf4b8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/abvarma.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/0/6/060e4465fa508961e9fd44875c5a850a9925ebfe" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/1/8/180c1485698c1d6ac052999f00e73b659f851654" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/4/4/442292b8a7efeabbe4cc176709b833b1792140ec" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/6/1/610d91c4cf5f8f93ec146426acc0bbf0f9731048" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/7/4/74ecd46d051500f54b6de8b4dd6c7b4cf06d2941" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/a/4/a446c870db463abdef2220de31b149f1b7ba519d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/c/7/c7579e5aac5ebace7f58070ec6b9583ace38a38e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/d/6/d6d2fdd8b08f9012eaa1a72d41547ae16d62a86e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/e/c/ec42db7b36d34b0d16373ff95a17e22d60d3605e" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sonarlint/issuestore/index.pb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/domain/RequestActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/domain/RequestEmployeeActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/repository/IRepositoryActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/repository/IRepositoryEmployee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/constants/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/constants/Constants.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/controller/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/controller/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/domain/ActivityResponse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/domain/EmployeeActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/domain/ResponseActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/domain/EmployeeStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/domain/ResponseStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/domain/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/domain/Response.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/Activity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/Activity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/entity/EmployeeActivityEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/entity/EmployeeActivityEntity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/repository/IRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/service/IService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/IService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/service/ServiceImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/service/ServiceImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/Application.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/Application.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/constants/Constants.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/constants/Constants.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/controller/Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/controller/Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/domain/ActivityResponse.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/domain/EmployeeActivity.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/domain/EmployeeStatistics.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/domain/Response.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/domain/Response.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/entity/Activity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/entity/Activity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/entity/EmployeeActivityEntity.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/entity/EmployeeActivityEntity.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/repository/IRepository.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/service/IService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/service/IService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/service/ServiceImplementation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/service/ServiceImplementation.class" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,6 +40,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="SONARLINT_PRECOMMIT_ANALYSIS" value="true" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -133,6 +94,14 @@
       <option name="presentableId" value="Default" />
       <updated>1581356601610</updated>
     </task>
+    <task id="LOCAL-00001" summary="addtional changes">
+      <created>1582062180448</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1582062180448</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -147,6 +116,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="addtional changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="addtional changes" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>

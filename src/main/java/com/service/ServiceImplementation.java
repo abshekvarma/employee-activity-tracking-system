@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Stream;
 
+@SuppressWarnings("unused")
 @Service
 @Slf4j
 public class ServiceImplementation implements IService {
@@ -28,9 +29,7 @@ public class ServiceImplementation implements IService {
     @Autowired
     private IRepositoryEmployee iRepositoryEmployee;
 
-
     @PostConstruct
-    @Override
     public void readAllFiles() {
         File file = new File(Constants.FOLDER_NAME);
         File[] allFiles = file.listFiles();
@@ -91,7 +90,6 @@ public class ServiceImplementation implements IService {
         return response;
     }
 
-
     private ResponseActivity getTodayActivity() {
         log.info("inside getTodayActivity() method");
         ResponseActivity employeeActivity = new ResponseActivity();
@@ -116,6 +114,4 @@ public class ServiceImplementation implements IService {
             activityNameMap.put(activity.getName(), activityNameMap.getOrDefault(activity.getName(), 0) + 1);
         }
     }
-
-
 }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@SuppressWarnings("unused")
 @Slf4j
 @RestController
 @RequestMapping(value = "/")
@@ -17,11 +18,13 @@ public class Controller {
 
     private IService service;
 
+    @SuppressWarnings("unused")
     @Autowired
     public Controller(IService service) {
         this.service = service;
     }
 
+    @SuppressWarnings("unused")
     @GetMapping(value = "get")
     public ResponseEntity occurrences() {
         Response response = service.processResponse();

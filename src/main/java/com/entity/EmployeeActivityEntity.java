@@ -1,6 +1,5 @@
 package com.entity;
 
-import com.domain.RequestActivity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Fetch;
@@ -29,7 +28,7 @@ public class EmployeeActivityEntity {
     @Fetch(FetchMode.SELECT)
     private List<Activity> activities = new ArrayList<>();
 
-   public void addActivities(Activity activity) {
+    public void addActivities(Activity activity) {
         this.activities.add(activity);
         activity.setEmployeeActivityEntity(this);
     }
