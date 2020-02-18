@@ -1,23 +1,21 @@
 package com.service;
 
 import com.constants.Constants;
-import com.domain.ActivityResponse;
-import com.domain.EmployeeActivity;
-import com.domain.EmployeeStatistics;
-import com.domain.Response;
+import com.domain.*;
 import com.entity.Activity;
 import com.entity.EmployeeActivityEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.repository.IRepository;
+import com.repository.IRepositoryEmployee;
+import com.repository.IRepositoryActivity;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
-import java.util.concurrent.TimeUnit;
 import java.util.stream.Stream;
 
 @Service
@@ -25,8 +23,13 @@ import java.util.stream.Stream;
 public class ServiceImplementation implements IService {
 
     @Autowired
-    private IRepository repository;
+    private IRepositoryActivity iRepositoryActivity;
 
+    @Autowired
+    private IRepositoryEmployee iRepositoryEmployee;
+
+
+    @PostConstruct
     @Override
     public void readAllFiles() {
         File file = new File(Constants.FOLDER_NAME);
@@ -45,16 +48,21 @@ public class ServiceImplementation implements IService {
         log.info("processing File");
         ObjectMapper objectMapper = new ObjectMapper();
         try {
-            EmployeeActivityEntity employeeActivity = objectMapper.readValue(files, EmployeeActivityEntity.class);
-            if (employeeActivity != null) {
-                for (Activity activity : employeeActivity.getActivities()) {
-                    if (Stream.of(Constants.LOGIN, Constants.LOGOUT, Constants.TEABREAK, Constants.LUNCHBREAK, Constants.GAMEMOOD, Constants.NAPTIME).noneMatch(activity.getName()::equalsIgnoreCase)) {
+            EmployeeActivityEntity employeeActivityEntity = new EmployeeActivityEntity();
+            RequestEmployeeActivity requestEmployeeActivity = objectMapper.readValue(files, RequestEmployeeActivity.class);
+            if (requestEmployeeActivity != null) {
+                for (RequestActivity requestActivity : requestEmployeeActivity.getActivities()) {
+                    if (Stream.of(Constants.LOGIN, Constants.LOGOUT, Constants.TEABREAK, Constants.LUNCHBREAK, Constants.GAMEMOOD, Constants.NAPTIME).noneMatch(requestActivity.getName()::equalsIgnoreCase)) {
                         log.error("Activity Names are Unmatched, unable to Append to Database");
-                        employeeActivity = new EmployeeActivityEntity();
-                        break;
+                        continue;
                     }
+                    Activity activity = new Activity();
+                    activity.setName(requestActivity.getName());
+                    activity.setDate(DateUtils.addMinutes(new Date(requestActivity.getTime()), requestActivity.getDuration()));
+                    employeeActivityEntity.addActivities(activity);
                 }
-                repository.save(employeeActivity);
+                employeeActivityEntity.setEmployee_id(requestEmployeeActivity.getEmployee_id());
+                iRepositoryEmployee.save(employeeActivityEntity);
             }
         } catch (IOException e) {
             log.error(e.getMessage());
@@ -64,17 +72,14 @@ public class ServiceImplementation implements IService {
     @Override
     public Response processResponse() {
         log.info("inside processResponse() method");
-        Iterable<EmployeeActivityEntity> employeeActivityEntityIterable = repository.findAll();
         Response response = new Response();
-        List<EmployeeActivity> employeeTodayActivityList = new ArrayList<>();
-        List<EmployeeStatistics> employeeStatisticsList = new ArrayList<>();
+        List<ResponseActivity> employeeTodayActivityList = new ArrayList<>();
+        List<ResponseStatistics> employeeStatisticsList = new ArrayList<>();
         Map<String, Integer> activityNameMap = new HashMap<>();
-        for (EmployeeActivityEntity employeeActivityEntity : employeeActivityEntityIterable) {
-            employeeTodayActivityList.add(getTodayActivity(employeeActivityEntity));
-            mapAllEmployeeStatistics(employeeActivityEntity, activityNameMap);
-        }
+        employeeTodayActivityList.add(getTodayActivity());
+        mapAllEmployeeStatistics(activityNameMap);
         activityNameMap.forEach((s, integer) -> {
-            EmployeeStatistics employeeStatistics = new EmployeeStatistics();
+            ResponseStatistics employeeStatistics = new ResponseStatistics();
             employeeStatistics.setActivity_name(s);
             employeeStatistics.setOccurrences(integer);
             employeeStatisticsList.add(employeeStatistics);
@@ -87,33 +92,30 @@ public class ServiceImplementation implements IService {
     }
 
 
-    private EmployeeActivity getTodayActivity(EmployeeActivityEntity employeeActivityEntity) {
+    private ResponseActivity getTodayActivity() {
         log.info("inside getTodayActivity() method");
-        EmployeeActivity employeeActivity = new EmployeeActivity();
-        List<ActivityResponse> activityResponseList = new ArrayList<>();
-        for (Activity activity : employeeActivityEntity.getActivities()) {
-            ActivityResponse activityResponse = new ActivityResponse();
-            Date date = DateUtils.addMilliseconds(new Date(activity.getTime()), activity.getDuration());
-            if (TimeUnit.MILLISECONDS.toHours(new Date().getTime() - date.getTime()) < Constants.HOURS) {
-                activityResponse.setName(activity.getName());
-                activityResponse.setStart_time(activity.getTime());
-                activityResponseList.add(activityResponse);
-            }
+        ResponseActivity employeeActivity = new ResponseActivity();
+        List<ActivityDomain> activityDomainResponseList = new ArrayList<>();
+        List<Activity> activityList = iRepositoryActivity.findActivityByDateAfter(DateUtils.addHours(new Date(), -Constants.HOURS));
+        for (com.entity.Activity activity : activityList) {
+            ActivityDomain activityDomainResponse = new ActivityDomain();
+            activityDomainResponse.setName(activity.getName());
+            activityDomainResponse.setStart_time(activity.getDate().getTime());
+            activityDomainResponseList.add(activityDomainResponse);
+            employeeActivity.setEmployee_id(activity.getEmployeeActivityEntity().getEmployee_id());
         }
-        employeeActivity.setEmployee_id(employeeActivityEntity.getEmployee_id());
-        employeeActivity.setActivities(activityResponseList);
+        employeeActivity.setActivities(activityDomainResponseList);
         log.info("returning response");
         return employeeActivity;
     }
 
-    private void mapAllEmployeeStatistics(EmployeeActivityEntity employeeActivityEntity, Map<String, Integer> activityNameMap) {
+    private void mapAllEmployeeStatistics(Map<String, Integer> activityNameMap) {
         log.info("Inside mapAllEmployeeStatistics() method");
-        for (Activity activity : employeeActivityEntity.getActivities()) {
-            Date date = DateUtils.addMilliseconds(new Date(activity.getTime()), activity.getDuration());
-            if (TimeUnit.MILLISECONDS.toDays(new Date().getTime() - date.getTime()) < Constants.DAYS) {
-                activityNameMap.put(activity.getName(), activityNameMap.getOrDefault(activity.getName(), 0) + 1);
-            }
+        List<Activity> activityList = iRepositoryActivity.findActivityByDateAfter(DateUtils.addDays(new Date(), -Constants.DAYS));
+        for (com.entity.Activity activity : activityList) {
+            activityNameMap.put(activity.getName(), activityNameMap.getOrDefault(activity.getName(), 0) + 1);
         }
     }
+
 
 }

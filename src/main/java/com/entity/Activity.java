@@ -1,13 +1,17 @@
 package com.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
 @NoArgsConstructor
+@Table(name = "activities")
 public class Activity {
 
     @Id
@@ -15,11 +19,13 @@ public class Activity {
     @Column(name = "activity_id")
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "employee_id")
+    @ToString.Exclude
     private EmployeeActivityEntity employeeActivityEntity;
 
     private String name;
-    private Long time;
-    private int duration;
+    @Column(columnDefinition = "TIMESTAMP NOT NULL")
+    private Date date;
 }

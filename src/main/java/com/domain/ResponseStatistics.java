@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ActivityResponse {
-    private String name;
-    private Long start_time;
+public class ResponseStatistics {
+    private String activity_name;
+    private Integer occurrences;
 }

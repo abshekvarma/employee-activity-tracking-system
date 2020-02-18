@@ -1,13 +1,17 @@
 package com.entity;
 
+import com.domain.RequestActivity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "employee_activity")
+@Table(name = "employeeActivityEntity")
 @Data
 @NoArgsConstructor
 public class EmployeeActivityEntity {
@@ -15,10 +19,18 @@ public class EmployeeActivityEntity {
     @Id
     private Long employee_id;
 
-    @Column(name = "activity")
+    @Column(name = "activities")
     @OneToMany(
             mappedBy = "employeeActivityEntity",
-            cascade = CascadeType.ALL
+            orphanRemoval = true,
+            cascade = CascadeType.ALL,
+            fetch = FetchType.EAGER
     )
-    private List<Activity> activities;
+    @Fetch(FetchMode.SELECT)
+    private List<Activity> activities = new ArrayList<>();
+
+   public void addActivities(Activity activity) {
+        this.activities.add(activity);
+        activity.setEmployeeActivityEntity(this);
+    }
 }

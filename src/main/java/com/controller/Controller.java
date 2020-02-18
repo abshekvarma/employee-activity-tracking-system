@@ -24,7 +24,6 @@ public class Controller {
 
     @GetMapping(value = "get")
     public ResponseEntity occurrences() {
-        service.readAllFiles();
         Response response = service.processResponse();
         if (response != null) {
             log.info("Response: "+response);

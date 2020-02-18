@@ -8,6 +8,6 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 public class Response {
-    List<EmployeeStatistics> all_employees_last_7_days_statistics;
-    List<EmployeeActivity> todays_activities;
+    List<ResponseStatistics> all_employees_last_7_days_statistics;
+    List<ResponseActivity> todays_activities;
 }
