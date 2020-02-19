@@ -5,8 +5,8 @@ import com.domain.*;
 import com.entity.Activity;
 import com.entity.EmployeeActivityEntity;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.repository.IRepositoryEmployee;
 import com.repository.IRepositoryActivity;
+import com.repository.IRepositoryEmployee;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,9 @@ public class ServiceImplementation implements IService {
     @PostConstruct
     public void readAllFiles() {
         File file = new File(Constants.FOLDER_NAME);
+        if (file.mkdir()) {
+            log.info("Directory Created for the path " + Constants.FOLDER_NAME);
+        }
         File[] allFiles = file.listFiles();
         if (allFiles != null) {
             for (File eachFile :
@@ -40,6 +43,8 @@ public class ServiceImplementation implements IService {
                     saveFileToDatabase(eachFile);
                 }
             }
+        } else {
+            log.error("No Files present ");
         }
     }
 

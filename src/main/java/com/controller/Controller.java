@@ -16,20 +16,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(value = "/")
 public class Controller {
 
-    private IService service;
-
     @SuppressWarnings("unused")
     @Autowired
-    public Controller(IService service) {
-        this.service = service;
-    }
+    private IService service;
 
     @SuppressWarnings("unused")
     @GetMapping(value = "get")
     public ResponseEntity occurrences() {
         Response response = service.processResponse();
-        if (response != null) {
-            log.info("Response: "+response);
+        if (!response.getAll_employees_last_7_days_statistics().isEmpty() && !response.getTodays_activities().isEmpty()) {
+            log.info("Response: " + response);
             return new ResponseEntity<>(response, HttpStatus.OK);
         } else {
             log.error("Invalid Response");
